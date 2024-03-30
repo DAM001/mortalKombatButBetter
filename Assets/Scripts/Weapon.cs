@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour
     {
         if (collision.transform.GetComponent<Rigidbody>() != null)
         {
-            collision.transform.GetComponent<Rigidbody>().AddForce(_parent.transform.right * _parent.transform.parent.GetComponent<Rigidbody>().velocity.magnitude * _knockbackForce);
+            collision.transform.GetComponent<Rigidbody>().AddForce(_parent.transform.right * GetComponent<Rigidbody>().velocity.magnitude * _parent.transform.parent.GetComponent<Rigidbody>().velocity.magnitude * _knockbackForce);
         }
     }
 }

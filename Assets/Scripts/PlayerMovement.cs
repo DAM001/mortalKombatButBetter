@@ -9,10 +9,36 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _jumpSpeed = 100f;
     [SerializeField] private float _downForce = 30f;
     private Vector2 moveDirection = Vector2.zero;
+    private bool _isRightFacing = true;
+    [HideInInspector] public bool IsRightFacing
+    {
+        get 
+        {
+            return _isRightFacing;
+        } 
+        set 
+        {
+            if (_isRightFacing == value) return;
+
+            _isRightFacing = !_isRightFacing;
+            transform.Rotate(0, 180, 0);
+        } 
+    }
+
 
     public void Move(Vector2 direction)
     {
-        moveDirection = direction;
+        if (direction.x > .5)
+        {
+            IsRightFacing = true;
+        }
+        else if (direction.x < -.5)
+        {
+            IsRightFacing = false;
+        }
+
+
+        moveDirection = direction * (IsRightFacing ? 1 : -1);
     }
 
     public void Jump()
