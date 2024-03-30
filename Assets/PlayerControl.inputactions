@@ -37,7 +37,7 @@
                 {
                     "name": "",
                     "id": "2cbf9452-e8cb-4969-8e3c-fc9878bb720a",
-                    "path": "<XInputController>/leftStick/right",
+                    "path": "<XInputController>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

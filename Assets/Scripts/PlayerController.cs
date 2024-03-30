@@ -14,6 +14,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump()
     {
-        Debug.Log("Jump");
+        _movement.Jump();
+    }
+
+    private void OnAttack()
+    {
+        
     }
 }
