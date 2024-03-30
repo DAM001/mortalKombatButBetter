@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, 0);
+            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, .1f, _rigidbody.velocity.z);
         }
 
         float moveSpeed = IsGrounded() ? _moveSpeed : _moveSpeed / 2f;

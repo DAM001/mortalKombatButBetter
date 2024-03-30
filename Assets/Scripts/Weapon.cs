@@ -7,10 +7,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float _knockbackForce = 1000f;
     private Transform _parent;
 
-    private void Start()
+    public void SetParent(Transform parent)
     {
-        _parent = transform.parent;
-        transform.parent = null;
+        _parent = parent;
     }
 
     private void FixedUpdate()
@@ -35,9 +34,22 @@ public class Weapon : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.GetComponent<Rigidbody>() != null)
+        Attack(collision.transform, 1f);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        Attack(collision.transform, .1f);
+    }
+
+    private void Attack(Transform hitTrans, float forceModifier)
+    {
+        if (hitTrans.childCount < 1 || hitTrans.GetChild(0) == _parent) return;
+        if (hitTrans.gameObject.tag == "Weapon") return;
+
+        if (hitTrans.GetComponent<Rigidbody>() != null)
         {
-            collision.transform.GetComponent<Rigidbody>().AddForce(_parent.transform.right * GetComponent<Rigidbody>().velocity.magnitude * _parent.transform.parent.GetComponent<Rigidbody>().velocity.magnitude * _knockbackForce);
+            hitTrans.GetComponent<Rigidbody>().AddForce(_parent.transform.right * GetComponent<Rigidbody>().velocity.magnitude * _parent.transform.parent.GetComponent<Rigidbody>().velocity.magnitude * _knockbackForce * forceModifier);
         }
     }
 }

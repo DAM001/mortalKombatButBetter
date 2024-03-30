@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _movement;
+    [SerializeField] private WeaponHandler _weaponHandler;
 
     private void OnMove(InputValue inputValue)
     {
@@ -17,8 +18,13 @@ public class PlayerController : MonoBehaviour
         _movement.Jump();
     }
 
-    private void OnAttack()
+    private void OnAttackDown()
     {
-        
+        _weaponHandler.AttackPos();
+    }
+
+    private void OnAttackUp()
+    {
+        _weaponHandler.IdlePos();
     }
 }

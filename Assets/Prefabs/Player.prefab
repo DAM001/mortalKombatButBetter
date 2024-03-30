@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5247201445254684076}
   m_Layer: 0
   m_Name: WeaponStick
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 100
   _rotationSpeed: 100
-  _knockbackForce: 5000
+  _knockbackForce: 2000
 --- !u!65 &6727130493897035371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movement: {fileID: 6729518150715450800}
+  _weaponHandler: {fileID: 8173575906609219456}
 --- !u!114 &6729518150715450800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +269,7 @@ Rigidbody:
   m_GameObject: {fileID: 6729518150715450806}
   serializedVersion: 2
   m_Mass: 80
-  m_Drag: 1
+  m_Drag: 1.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -417,3 +418,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fbaa6e41cd28ce4f853fad1e82e4a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movement: {fileID: 0}
+  _attackForce: 10000
