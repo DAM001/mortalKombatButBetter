@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _downForce = 30f;
     private Vector2 moveDirection = Vector2.zero;
     private bool _isRightFacing = true;
+    private int _attackState = 1;
     [HideInInspector] public bool IsRightFacing
     {
         get 
@@ -25,8 +26,28 @@ public class PlayerMovement : MonoBehaviour
         } 
     }
 
+    [HideInInspector] public int AttackState
+    {
+        get
+        {
+            return _attackState;
+        }
+        set 
+        { 
+            _attackState = value;
+        }
+    }
+
 
     public void Move(Vector2 direction)
+    {
+        RightFacingCheck(direction);
+        StateCheck(direction);
+
+        moveDirection = direction * (IsRightFacing ? 1 : -1);
+    }
+
+    private void RightFacingCheck(Vector2 direction)
     {
         if (direction.x > .5)
         {
@@ -36,9 +57,22 @@ public class PlayerMovement : MonoBehaviour
         {
             IsRightFacing = false;
         }
+    }
 
-
-        moveDirection = direction * (IsRightFacing ? 1 : -1);
+    private void StateCheck(Vector2 direction)
+    {
+        if (direction.y > .5)
+        {
+            AttackState = 2;
+        }
+        else if (direction.y < -.5)
+        {
+            AttackState = 0;
+        }
+        else
+        {
+            AttackState = 1;
+        }
     }
 
     public void Jump()
